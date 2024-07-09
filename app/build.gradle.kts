@@ -7,6 +7,9 @@ android {
     namespace = "com.example.meetteam"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding=true
+    }
     defaultConfig {
         applicationId = "com.example.meetteam"
         minSdk = 24
