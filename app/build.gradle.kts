@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
-
+//푸시확인_고찬영
 android {
     namespace = "com.example.meetteam"
     compileSdk = 34
