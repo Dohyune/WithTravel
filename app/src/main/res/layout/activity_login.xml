@@ -14,7 +14,8 @@
         android:hint="Username"
         android:inputType="text"
         android:padding="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:autofillHints="username" />
 
     <EditText
         android:id="@+id/password"
@@ -23,7 +24,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:autofillHints="password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_button"
