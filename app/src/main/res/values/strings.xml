@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Meetteam</string>
+    <string name="home">홈</string>
+    <string name="chat">채팅</string>
+    <string name="shop">상점</string>
+    <string name="profile">마이페이지</string>
+    <string name="send">보내기</string>
+    <string name="logout">로그아웃</string>
+    <string name="enter_message">메시지를 입력하세요</string>
+    <string name="character_description">사용자 캐릭터</string>
+    <string name="user_greeting">ㅇㅇ님, 성실한 조원이시군요!</string>
+    <string name="intro_text">뚜벅뚜벅\n뚜벅이</string>
 </resources>
