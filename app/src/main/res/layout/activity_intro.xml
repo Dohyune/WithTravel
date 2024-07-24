@@ -14,10 +14,8 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginBottom="20dp"
-        android:background="#F6E10A"
-        android:drawableStart="@drawable/kakao_img_xml"
+        android:background="@drawable/kakao_login_medium_wide"
         android:padding="10dp"
-        android:text="카카오톡으로 시작하기"
         />
 
     <androidx.appcompat.widget.AppCompatButton
