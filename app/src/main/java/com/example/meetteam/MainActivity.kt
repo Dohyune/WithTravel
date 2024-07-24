@@ -44,11 +44,11 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.selectedItemId = R.id.nav_home
         }
     }
-
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
+
 }

@@ -15,6 +15,7 @@ android {
 
     buildFeatures{
         viewBinding=true
+        buildConfig=true
     }
     defaultConfig {
         applicationId = "com.example.meetteam"
@@ -25,7 +26,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", properties.getProperty("KAKAO_NATIVE_APP_KEY"))
-        resValue("String","KAKAO_OAUTH_HOST",properties.getProperty("KAKAO_OAUTH_HOST"))
+        resValue("string","KAKAO_OAUTH_HOST",properties.getProperty("KAKAO_OAUTH_HOST"))
     }
 
     buildTypes {
