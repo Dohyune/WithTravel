@@ -1,6 +1,7 @@
 package com.example.meetteam
 
 import android.app.Application
+import com.example.meetteam.BuildConfig.KAKAO_NATIVE_APP_KEY
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.v2.all.BuildConfig
 
@@ -11,6 +12,6 @@ class MyApplication : Application() {
         // 다른 초기화 코드들
 
         // Kakao SDK 초기화
-        KakaoSdk.init(this, "KAKAO_NATIVE_APP_KEY" )
+        KakaoSdk.init(this, KAKAO_NATIVE_APP_KEY )
     }
 }
