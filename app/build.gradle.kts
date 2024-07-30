@@ -7,8 +7,13 @@ plugins {
 }
 
 val properties = Properties()
-properties.load(project.rootProject.file("local.properties").inputStream())
+val localPropertiesFile = project.rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    properties.load(localPropertiesFile.inputStream())
+}
 
+val kakaoNativeAppKey = properties.getProperty("kakao_native_app_key", "")
+val kakaoOauthHost = properties.getProperty("kakao_oauth_host","")
 android {
     namespace = "com.example.meetteam"
     compileSdk = 34
@@ -24,9 +29,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", properties.getProperty("KAKAO_NATIVE_APP_KEY"))
-        resValue("string","KAKAO_OAUTH_HOST",properties.getProperty("KAKAO_OAUTH_HOST"))
+        buildConfigField("String","KAKAO_NATIVE_APP_KEY","\"$kakaoNativeAppKey\"")
+        resValue("string","kakao_oauth_host",kakaoOauthHost)
     }
 
     buildTypes {

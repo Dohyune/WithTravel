@@ -10,6 +10,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -17,12 +18,13 @@ import kotlin.coroutines.suspendCoroutine
 class KakaoAuthViewModel(application: Application): AndroidViewModel(application) {
 
     companion object{
-        const val TAG="KakaoAuthViewModel"
+        const val TAG="KakaoLoginAuthViewModel"
     }
 
     private val context = application.applicationContext
 
-
+    private val _isLoggedIn = MutableStateFlow(false)
+    val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
 
    fun handleKakaoLogin(){
         // 로그인 조합 예제
@@ -30,9 +32,10 @@ class KakaoAuthViewModel(application: Application): AndroidViewModel(application
         // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
-                Log.e(TAG, "카카오계정으로 로그인 실패", error)
+                Log.e(TAG, "Kakao Account login failed", error)
             } else if (token != null) {
-                Log.i(TAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
+                Log.i(TAG, "Kakao Account login success ${token.accessToken}")
+                _isLoggedIn.value = true
             }
         }
 
@@ -40,7 +43,7 @@ class KakaoAuthViewModel(application: Application): AndroidViewModel(application
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
             UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
                 if (error != null) {
-                    Log.e(TAG, "카카오톡으로 로그인 실패", error)
+                    Log.e(TAG, "Kakaotalk login failed", error)
 
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
                     // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
@@ -51,7 +54,8 @@ class KakaoAuthViewModel(application: Application): AndroidViewModel(application
                     // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
                     UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
                 } else if (token != null) {
-                    Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                    Log.i(TAG, "Kakaotalk login success ${token.accessToken}")
+                    _isLoggedIn.value = true
                 }
             }
         } else {
