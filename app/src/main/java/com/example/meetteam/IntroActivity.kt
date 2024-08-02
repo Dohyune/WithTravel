@@ -21,17 +21,18 @@ class IntroActivity : AppCompatActivity() {
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //로그인 확인하기
-        lifecycleScope.launch{
-            kakaoAuthViewModel.isLoggedIn.collect{ isLoggedIn ->
-                if(isLoggedIn) {
+        kakaoAuthViewModel.setActivityContext(this)  // Activity 컨텍스트 전달
+
+        lifecycleScope.launch {
+            kakaoAuthViewModel.isLoggedIn.collect { isLoggedIn ->
+                if (isLoggedIn) {
                     navigateToMainActivity()
                 }
             }
         }
 
         binding.kakaoLoginButton.setOnClickListener {
-            Log.i("KakaoLogin","Kakao Login button pressed")
+            Log.i("KakaoLogin", "Kakao Login button pressed")
             kakaoAuthViewModel.handleKakaoLogin()
         }
 
@@ -41,7 +42,7 @@ class IntroActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToMainActivity(){
+    private fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
