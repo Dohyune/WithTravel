@@ -14,7 +14,27 @@ import java.util.Locale
 
 class ChatAdapter(private val chatList: List<ChatData>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
-    class ChatViewHolder(private val binding: ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+    interface OnItemClickListener {
+        fun onItemClick(chatData: ChatData)
+    }
+
+    private var listener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    inner class ChatViewHolder(private val binding: ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener?.onItemClick(chatList[position])
+                }
+            }
+        }
         fun bind(chatData: ChatData) {
             binding.apply {
                 subject.text = chatData.chat_title
@@ -24,6 +44,7 @@ class ChatAdapter(private val chatList: List<ChatData>) : RecyclerView.Adapter<C
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
