@@ -4,52 +4,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.meetteam.databinding.ItemChatBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class ChatAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(private val chatList: List<ChatData>) : RecyclerView.Adapter<ChatAdapter.ChatViewHolder>() {
 
-    private val messages = mutableListOf<Message>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = if (viewType == MESSAGE_TYPE_SENT) {
-            LayoutInflater.from(parent.context).inflate(R.layout.item_message_sent, parent, false)
-        } else {
-            LayoutInflater.from(parent.context).inflate(R.layout.item_message_received, parent, false)
-        }
-        return MessageViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as MessageViewHolder).bind(messages[position])
-    }
-
-    override fun getItemCount(): Int = messages.size
-
-    override fun getItemViewType(position: Int): Int {
-        return if (messages[position].isSent) {
-            MESSAGE_TYPE_SENT
-        } else {
-            MESSAGE_TYPE_RECEIVED
+    class ChatViewHolder(private val binding: ItemChatBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(chatData: ChatData) {
+            binding.apply {
+                subject.text = chatData.chat_title
+                code.text = chatData.chat_code
+                time.text = chatData.chat_time
+                peopleNum.text = chatData.people_num
+            }
         }
     }
 
-    fun addMessage(message: Message) {
-        messages.add(message)
-        notifyItemInserted(messages.size - 1)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
+        val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ChatViewHolder(binding)
     }
 
-    class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textViewMessage: TextView = itemView.findViewById(R.id.textViewMessage)
+    override fun getItemCount(): Int = chatList.size
 
-        fun bind(message: Message) {
-            textViewMessage.text = message.text
-        }
-    }
-
-    data class Message(val text: String, val isSent: Boolean)
-
-    companion object {
-        private const val MESSAGE_TYPE_SENT = 1
-        private const val MESSAGE_TYPE_RECEIVED = 2
+    override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
+        holder.bind(chatList[position])
     }
 }

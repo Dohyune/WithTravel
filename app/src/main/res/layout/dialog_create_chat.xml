@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+    <EditText
+        android:id="@+id/editTextChatName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="채팅방 이름을 입력해주세요" />
+
+    <EditText
+        android:id="@+id/editPeopleNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="인원 설정(2~7)" />
+
+
+
+
+</LinearLayout>

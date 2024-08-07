@@ -40,4 +40,6 @@
         android:text="아이디를 잊으셨나요? 아이디 찾기 ㅣ 회원가입"
         android:gravity="center"
         android:layout_marginTop="20dp"/>
+
+    registerbutton
 </LinearLayout>
