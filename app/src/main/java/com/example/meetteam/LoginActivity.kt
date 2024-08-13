@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         val usernameEditText: EditText = binding.username
         val passwordEditText: EditText = binding.password
         val loginButton: Button = binding.loginButton
+        val backButton: Button = binding.backButton
 
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()
@@ -38,6 +39,10 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this@LoginActivity, "Invalid username or password", Toast.LENGTH_SHORT).show()
             }
+        }
+        // 뒤로가기 버튼 클릭 리스너
+        backButton.setOnClickListener {
+            finish()  // 현재 액티비티를 종료하고 이전 액티비티로 돌아감
         }
     }
 }

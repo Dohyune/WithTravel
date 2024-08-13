@@ -7,13 +7,56 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- 페이지 인디케이터 바 -->
+    <LinearLayout
+        android:id="@+id/indicator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="32dp">
 
+        <!-- 각 슬라이드에 해당하는 인디케이터 -->
+        <View
+            android:id="@+id/indicator_1"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:layout_marginHorizontal="4dp" />
 
+        <View
+            android:id="@+id/indicator_2"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:layout_marginHorizontal="4dp" />
+
+        <View
+            android:id="@+id/indicator_3"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:layout_weight="1"
+            android:background="@color/gray"
+            android:layout_marginHorizontal="4dp" />
+
+    </LinearLayout>
+
+    <!-- ViewPager2 추가 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="32dp" />
+
+    <!-- 버튼들 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/kakao_login_button"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/kakao_login_medium_wide"
         android:padding="10dp"
@@ -26,15 +69,16 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/id_login_button_icon"
         android:padding="10dp"
-        android:text="ID로 시작하기"
-        android:textColor="@color/white"/>
+        android:text="Meetteam ID로 시작하기"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
 
+    <!-- 하단 텍스트 -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="아이디를 잊으셨나요?  아이디 찾기 ㅣ 회원가입"
         android:textColor="#FFFFFF" />
-
 
 </LinearLayout>
