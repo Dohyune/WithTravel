@@ -59,6 +59,7 @@ class ChatFragment : Fragment() {
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("새 채팅방 추가")
+
             .setPositiveButton("확인") { dialog, _ ->
                 val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
                 val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
@@ -68,13 +69,18 @@ class ChatFragment : Fragment() {
                 val title = titleInput.text.toString()
                 val code = Random.nextInt(1000, 10000).toString()
                 val time = dateFormat.format(currentTime)
-                val peopleNum = peopleNumInput.text.toString()
 
-                // 새로운 채팅 데이터 추가
-                chatDataList.add(0, ChatData(title, code, peopleNum, time))
-                chatAdapter.notifyItemInserted(0)
+                val peopleNum = peopleNumInput.text.toString().toIntOrNull() // Int로 변환하되, null이 될 수 있음
 
-                dialog.dismiss()
+                if (peopleNum != null && peopleNum in 2..7) {
+                    // 새로운 채팅 데이터 추가
+                    chatDataList.add(0, ChatData(title, code, peopleNum.toString(), time))
+                    chatAdapter.notifyItemInserted(0)
+                    dialog.dismiss()
+                } else {
+                    // 인원이 2~7 사이가 아닐 때
+                    Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             .setNegativeButton("취소") { dialog, _ ->
                 dialog.dismiss()

@@ -37,7 +37,8 @@ class IntroActivity : AppCompatActivity() {
         }
 
         binding.idLoginButton.setOnClickListener {
-            val intent = Intent(this@IntroActivity, LoginActivity::class.java)
+            // 테스트할 때 로그인 바로 할 수 있게 함
+            val intent = Intent(this@IntroActivity, MainActivity::class.java)
             startActivity(intent)
         }
     }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#326CE9"
+    android:background="@color/blue"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
@@ -13,7 +13,8 @@
         android:id="@+id/kakao_login_button"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/kakao_login_medium_wide"
         android:padding="10dp"
         />
@@ -23,15 +24,17 @@
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/id_login_button_icon"
         android:padding="10dp"
-        android:text="ID로 시작하기" />
+        android:text="ID로 시작하기"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="아이디를 잊으셨나요?  아이디 찾기 ㅣ 회원가입"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF" />
 
 
 </LinearLayout>
