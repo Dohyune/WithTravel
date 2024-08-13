@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    android:gravity="center"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <!-- 페이지 인디케이터 바 -->
@@ -14,7 +14,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <!-- 각 슬라이드에 해당하는 인디케이터 -->
         <View
@@ -46,39 +49,88 @@
     <!-- ViewPager2 추가 -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="32dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/indicator_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/kakao_login_button"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <!-- 버튼들 -->
+    <!-- 카카오 로그인 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/kakao_login_button"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/kakao_login_medium_wide"
         android:padding="10dp"
-        />
+        app:layout_constraintBottom_toTopOf="@id/id_login_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- ID 로그인 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/id_login_button"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/id_login_button_icon"
         android:padding="10dp"
         android:text="Meetteam ID로 시작하기"
         android:textColor="@color/white"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/forgot_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 하단 텍스트 -->
-    <TextView
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="아이디를 잊으셨나요?  아이디 찾기 ㅣ 회원가입"
-        android:textColor="#FFFFFF" />
+        android:text="아이디를 잊으셨나요?"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toStartOf="@id/find_id_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_id_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="아이디 찾기"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/signup_button"
+        app:layout_constraintStart_toEndOf="@id/forgot_password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="|"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/signup_button"
+        app:layout_constraintStart_toEndOf="@id/find_id_button" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/find_id_button"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
