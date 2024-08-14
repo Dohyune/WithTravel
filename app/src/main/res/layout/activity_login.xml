@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#FFFFFF">
 
+    <!-- Back button and Login title -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
@@ -14,9 +16,10 @@
         android:drawableStart="@drawable/ic_arrow_back"
         android:drawablePadding="8dp"
         android:padding="0dp"
-        app:layout_constraintBottom_toTopOf="@id/line"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/line"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -27,89 +30,146 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.318"
-        app:layout_constraintStart_toEndOf="@id/back_button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016" />
+        android:layout_marginTop="10dp"
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/line"/>
+
+    <!-- Divider line -->
     <View
         android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#D3D3D3"
+        android:layout_marginTop="2dp"
         app:layout_constraintTop_toBottomOf="@id/back_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="2dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 아이디 입력 필드 -->
-
-    <TextView
-        android:id="@+id/username_label"
-        android:layout_width="match_parent"
+    <!-- Meetteam Logo -->
+    <ImageView
+        android:id="@+id/login_icon1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:text="아이디"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
+        android:src="@drawable/login_icon1"
+        android:layout_marginTop="120dp"
+        app:layout_constraintTop_toBottomOf="@id/line"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
-    <!-- 비밀번호 입력 필드 -->
+    <!-- Slogan -->
+    <ImageView
+        android:id="@+id/login_icon2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_icon2"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/login_icon1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_edittext_background"
         android:hint="아이디"
         android:inputType="text"
         android:padding="10dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_label" />
-
-    <TextView
-        android:id="@+id/password_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="비밀번호"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_icon2"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:hint="비밀번호"
-        android:background="@drawable/rounded_edittext_background"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintTop_toBottomOf="@id/password_label"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username"/>
 
-    <!-- 로그인 버튼 -->
+    <TextView
+        android:id="@+id/wrong_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="아이디 또는 비밀번호를 다시 확인해주세요"
+        android:textColor="@color/red"
+        android:textColorLink="#FF0000"
+        android:textSize="11sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_id"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:text="아이디 찾기"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toStartOf="@id/find_pw"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="|"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@id/find_pw"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/find_pw"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:text="비밀번호 찾기"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그인 하기"
-        android:textColor="@color/white"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_button_background"
         android:backgroundTint="@color/blue"
         android:padding="12dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button_background"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:text="로그인 하기"
+        android:textColor="@color/white"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/find_pw" />
+
+    <!-- 카카오톡 로그인 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/kakao_login_button"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/kakao_login_medium_wide"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 로그인 버튼 -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
