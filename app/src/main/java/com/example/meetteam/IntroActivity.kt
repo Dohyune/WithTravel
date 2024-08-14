@@ -49,6 +49,11 @@ class IntroActivity : AppCompatActivity() {
             kakaoAuthViewModel.handleKakaoLogin()
         }
 
+        binding.signupButton.setOnClickListener{
+            val intent = Intent(this@IntroActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.idLoginButton.setOnClickListener {
             // 테스트할 때 로그인 바로 할 수 있게 함
             val intent = Intent(this@IntroActivity, LoginActivity::class.java)
