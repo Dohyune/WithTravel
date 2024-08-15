@@ -20,6 +20,15 @@ class LocationSettingsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 뒤로가기 버튼 클릭 시
+        binding.backButton.setOnClickListener {
+            parentFragmentManager.popBackStack() // 현재 Fragment를 백스택에서 제거
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
