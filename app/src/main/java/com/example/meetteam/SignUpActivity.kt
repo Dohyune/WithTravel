@@ -1,5 +1,6 @@
 package com.example.meetteam
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -34,8 +35,9 @@ class SignUpActivity : AppCompatActivity() {
 
         // 가입하기 버튼 클릭 이벤트
         binding.signupButton.setOnClickListener {
-            // 가입하기 로직 구현.
-            Toast.makeText(this, "가입하기", Toast.LENGTH_SHORT).show()
+            // UserInfoActivity로 이동
+            val intent = Intent(this, UserInfoActivity::class.java)
+            startActivity(intent)
         }
 
         // 이메일 도메인 스피너 설정

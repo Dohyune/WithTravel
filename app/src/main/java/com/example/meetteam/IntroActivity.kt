@@ -63,9 +63,9 @@ class IntroActivity : AppCompatActivity() {
 
     private fun updateIndicators(position: Int) {
         // 모든 인디케이터의 배경색을 회색으로 설정
-        binding.indicator1.setBackgroundColor(getColor(R.color.gray))
-        binding.indicator2.setBackgroundColor(getColor(R.color.gray))
-        binding.indicator3.setBackgroundColor(getColor(R.color.gray))
+        binding.indicator1.setBackgroundColor(getColor(R.color.skyblue))
+        binding.indicator2.setBackgroundColor(getColor(R.color.skyblue))
+        binding.indicator3.setBackgroundColor(getColor(R.color.skyblue))
 
         // 현재 페이지에 해당하는 인디케이터만 하얀색으로 변경
         when (position) {
