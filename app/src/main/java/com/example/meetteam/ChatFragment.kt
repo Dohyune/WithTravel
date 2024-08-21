@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetteam.databinding.FragmentChatBinding
 import java.text.SimpleDateFormat
@@ -19,6 +20,7 @@ import kotlin.random.Random
 class ChatFragment : Fragment() {
     private lateinit var binding: FragmentChatBinding
     private lateinit var chatAdapter: ChatAdapter
+    private lateinit var chatViewModel: ChatViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +33,14 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // ViewModel을 Activity 범위에서 가져옴
+        chatViewModel = ViewModelProvider(requireActivity()).get(ChatViewModel::class.java)
+
         setupRecyclerView()
+
+        chatViewModel.chatDataList.observe(viewLifecycleOwner) { chatList ->
+            chatAdapter.submitList(chatList.toList())
+        }
 
         binding.createChat.setOnClickListener {
             showAddChatDialog()
@@ -39,7 +48,6 @@ class ChatFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        // ChatAdapter 생성 시 클릭 리스너를 전달
         chatAdapter = ChatAdapter { chatData ->
             openChatRoom(chatData)
         }
@@ -63,18 +71,13 @@ class ChatFragment : Fragment() {
                 val title = titleInput.text.toString()
                 val code = Random.nextInt(1000, 10000).toString()
                 val time = dateFormat.format(currentTime)
-
                 val peopleNum = peopleNumInput.text.toString().toIntOrNull()
 
                 if (peopleNum != null && peopleNum in 2..7) {
-                    // 새로운 채팅 데이터 추가
                     val newChat = ChatData(title, code, peopleNum.toString(), time)
-                    val updatedChatList = chatAdapter.currentList.toMutableList()
-                    updatedChatList.add(0, newChat)
-                    chatAdapter.submitList(updatedChatList) // ListAdapter의 submitList 사용
+                    chatViewModel.addChat(newChat)
                     dialog.dismiss()
                 } else {
-                    // 인원이 2~7 사이가 아닐 때
                     Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -93,4 +96,5 @@ class ChatFragment : Fragment() {
         }
         startActivity(intent)
     }
+
 }
