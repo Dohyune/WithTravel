@@ -61,7 +61,7 @@
     <!-- 카카오 로그인 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/kakao_login_button"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/kakao_login_medium_wide"
@@ -73,7 +73,7 @@
     <!-- ID 로그인 버튼 -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/id_login_button"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/id_login_button_icon"

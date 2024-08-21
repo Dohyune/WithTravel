@@ -6,13 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.NumberPicker
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetteam.databinding.FragmentChatBinding
@@ -23,10 +18,7 @@ import kotlin.random.Random
 
 class ChatFragment : Fragment() {
     private lateinit var binding: FragmentChatBinding
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private lateinit var chatAdapter: ChatAdapter
-
-    private val chatDataList = arrayListOf<ChatData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,10 +39,13 @@ class ChatFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        chatAdapter = ChatAdapter(chatDataList)
+        // ChatAdapter 생성 시 클릭 리스너를 전달
+        chatAdapter = ChatAdapter { chatData ->
+            openChatRoom(chatData)
+        }
         binding.recyclerViewChat.apply {
             adapter = chatAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
@@ -59,7 +54,6 @@ class ChatFragment : Fragment() {
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("새 채팅방 추가")
-
             .setPositiveButton("확인") { dialog, _ ->
                 val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
                 val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
@@ -70,12 +64,14 @@ class ChatFragment : Fragment() {
                 val code = Random.nextInt(1000, 10000).toString()
                 val time = dateFormat.format(currentTime)
 
-                val peopleNum = peopleNumInput.text.toString().toIntOrNull() // Int로 변환하되, null이 될 수 있음
+                val peopleNum = peopleNumInput.text.toString().toIntOrNull()
 
                 if (peopleNum != null && peopleNum in 2..7) {
                     // 새로운 채팅 데이터 추가
-                    chatDataList.add(0, ChatData(title, code, peopleNum.toString(), time))
-                    chatAdapter.notifyItemInserted(0)
+                    val newChat = ChatData(title, code, peopleNum.toString(), time)
+                    val updatedChatList = chatAdapter.currentList.toMutableList()
+                    updatedChatList.add(0, newChat)
+                    chatAdapter.submitList(updatedChatList) // ListAdapter의 submitList 사용
                     dialog.dismiss()
                 } else {
                     // 인원이 2~7 사이가 아닐 때
@@ -87,5 +83,14 @@ class ChatFragment : Fragment() {
             }
 
         dialogBuilder.create().show()
+    }
+
+    private fun openChatRoom(chatData: ChatData) {
+        val intent = Intent(requireContext(), ChattingActivity::class.java).apply {
+            putExtra("CHAT_TITLE", chatData.chat_title)
+            putExtra("CHAT_CODE", chatData.chat_code)
+            putExtra("PEOPLE_NUM", chatData.people_num)
+        }
+        startActivity(intent)
     }
 }
