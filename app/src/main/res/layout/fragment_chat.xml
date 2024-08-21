@@ -4,43 +4,52 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_marginTop="20dp"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/chat_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Meetteam"
-        android:textSize="30sp"
+        android:text="채팅"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/create_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="방 생성"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button_background"
+        android:backgroundTint="@color/blue"
         app:layout_constraintEnd_toStartOf="@+id/addition_chat"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginRight="10dp"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addition_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="방 입장"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button_background"
+        android:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/addition_chat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

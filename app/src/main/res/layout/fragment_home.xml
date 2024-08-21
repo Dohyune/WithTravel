@@ -1,39 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:layout_marginTop="20dp">
+
+    <!-- Chat Subject -->
+    <TextView
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="홈"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <TextView
+        android:id="@+id/intro_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/intro_text"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <ImageView
+        android:id="@+id/character_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="#FF777777"
         android:layout_marginBottom="20dp"
-        android:contentDescription="@string/character_description" />
+        android:contentDescription="@string/character_description"
+        app:layout_constraintTop_toBottomOf="@id/intro_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <TextView
+        android:id="@+id/user_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_greeting"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/character_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <Button
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout"
-        android:layout_marginTop="20dp"/>
-</LinearLayout>
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/user_greeting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
