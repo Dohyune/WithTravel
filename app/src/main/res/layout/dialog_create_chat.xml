@@ -19,6 +19,13 @@
         android:layout_height="wrap_content"
         android:hint="인원 설정(2~7)" />
 
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/leader"
+        android:layout_gravity="center"
+        android:hint="리더를 희망해요"
+        />
 
 
 
