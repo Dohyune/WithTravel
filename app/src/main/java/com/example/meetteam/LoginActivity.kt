@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
         val backButton: Button = binding.backButton
         val kakaoLoginButton: Button = binding.kakaoLoginButton
 
+        kakaoAuthViewModel.setActivityContext(this)
         // 카카오 로그인 상태 체크 및 처리
         lifecycleScope.launch {
             kakaoAuthViewModel.isLoggedIn.collect { isLoggedIn ->
