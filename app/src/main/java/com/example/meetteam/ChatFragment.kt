@@ -1,13 +1,16 @@
 package com.example.meetteam
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +21,7 @@ import java.util.Locale
 import kotlin.random.Random
 
 class ChatFragment : Fragment() {
+
     private lateinit var binding: FragmentChatBinding
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var chatViewModel: ChatViewModel
@@ -58,35 +62,46 @@ class ChatFragment : Fragment() {
     }
 
     private fun showAddChatDialog() {
+        val dialog = Dialog(requireContext())
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_create_chat, null)
-        val dialogBuilder = AlertDialog.Builder(requireContext())
-            .setView(dialogView)
-            .setTitle("새 채팅방 추가")
-            .setPositiveButton("확인") { dialog, _ ->
-                val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
-                val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
-                val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-                val currentTime = Calendar.getInstance().time
 
-                val title = titleInput.text.toString()
-                val code = Random.nextInt(1000, 10000).toString()
-                val time = dateFormat.format(currentTime)
-                val peopleNum = peopleNumInput.text.toString().toIntOrNull()
+        dialog.setContentView(dialogView)
 
-                if (peopleNum != null && peopleNum in 2..7) {
-                    val newChat = ChatData(title, code, peopleNum.toString(), time)
-                    chatViewModel.addChat(newChat)
-                    dialog.dismiss()
-                } else {
-                    Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
-                }
-            }
-            .setNegativeButton("취소") { dialog, _ ->
+        // 다이얼로그 크기 및 배경 설정 (양 옆에 마진 추가)
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(), // 화면 너비의 90%만큼 다이얼로그 크기 설정
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog_background)
+
+        // 다이얼로그 타이틀을 중앙에 배치
+        val titleTextView = dialogView.findViewById<TextView>(R.id.dialogTitle)
+        titleTextView.gravity = Gravity.CENTER
+
+        val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
+        val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
+        val confirmButton = dialogView.findViewById<Button>(R.id.confirmButton)
+
+        confirmButton.setOnClickListener {
+            val title = titleInput.text.toString()
+            val peopleNum = peopleNumInput.text.toString().toIntOrNull()
+            val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            val currentTime = Calendar.getInstance().time
+            val time = dateFormat.format(currentTime)
+            val code = Random.nextInt(1000, 10000).toString()
+
+            if (peopleNum != null && peopleNum in 2..7) {
+                val newChat = ChatData(title, code, peopleNum.toString(), time)
+                chatViewModel.addChat(newChat)
                 dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
             }
+        }
 
-        dialogBuilder.create().show()
+        dialog.show()
     }
+
 
     private fun openChatRoom(chatData: ChatData) {
         val intent = Intent(requireContext(), ChattingActivity::class.java).apply {
@@ -96,5 +111,4 @@ class ChatFragment : Fragment() {
         }
         startActivity(intent)
     }
-
 }

@@ -1,0 +1,10 @@
+<!-- res/values/styles.xml -->
+<resources>
+    <!-- Rounded dialog style -->
+    <style name="RoundedDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@drawable/rounded_dialog_background</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
