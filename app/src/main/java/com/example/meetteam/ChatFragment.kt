@@ -9,12 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetteam.databinding.FragmentChatBinding
+import com.example.meetteam.network.ApiService
+import com.example.meetteam.network.CreateRoomRequest
+import com.example.meetteam.network.CreateRoomResponse
+import com.example.meetteam.network.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -80,28 +88,55 @@ class ChatFragment : Fragment() {
 
         val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
         val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
+        val leaderToggle = dialogView.findViewById<Switch>(R.id.leader_toggle)
         val confirmButton = dialogView.findViewById<Button>(R.id.confirmButton)
 
-        confirmButton.setOnClickListener {
-            val title = titleInput.text.toString()
-            val peopleNum = peopleNumInput.text.toString().toIntOrNull()
-            val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-            val currentTime = Calendar.getInstance().time
-            val time = dateFormat.format(currentTime)
-            val code = Random.nextInt(1000, 10000).toString()
+        var wantLeader = false
 
-            if (peopleNum != null && peopleNum in 2..7) {
-                val newChat = ChatData(title, code, peopleNum.toString(), time)
-                chatViewModel.addChat(newChat)
-                dialog.dismiss()
-            } else {
-                Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
-            }
+        leaderToggle.setOnCheckedChangeListener { _, isChecked ->
+            wantLeader = isChecked
         }
 
+        confirmButton.setOnClickListener {
+            val chatroomName = titleInput.text.toString()
+            val totalMember = peopleNumInput.text.toString().toIntOrNull()
+
+            if(chatroomName.isNotEmpty() && totalMember != null && totalMember in 2..7){
+                createChatRoom(chatroomName,totalMember,wantLeader)
+                dialog.dismiss()
+            } else{
+                Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.",Toast.LENGTH_SHORT).show()
+            }
+        }
         dialog.show()
     }
 
+    private fun createChatRoom(chatroomName: String, totalMember: Int, wantLeader: Boolean){
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+        val request = CreateRoomRequest(chatroomName, totalMember, wantLeader)
+
+        apiService.createRoom(request).enqueue(object : Callback<CreateRoomResponse> {
+            override fun onResponse(call: Call<CreateRoomResponse>, response: Response<CreateRoomResponse>) {
+                if (response.isSuccessful && response.body()?.isSuccess == true) {
+                    val newChat = ChatData(chatroomName, response.body()?.result ?: "", totalMember.toString(), getCurrentTime())
+                    chatViewModel.addChat(newChat)
+                    Toast.makeText(requireContext(), "채팅방이 생성되었습니다!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "채팅방 생성 실패: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<CreateRoomResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "채팅방 생성 중 오류 발생: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun getCurrentTime(): String {
+        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val currentTime = Calendar.getInstance().time
+        return dateFormat.format(currentTime)
+    }
 
     private fun openChatRoom(chatData: ChatData) {
         val intent = Intent(requireContext(), ChattingActivity::class.java).apply {
