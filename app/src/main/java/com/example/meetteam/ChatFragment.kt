@@ -57,6 +57,10 @@ class ChatFragment : Fragment() {
         binding.createChat.setOnClickListener {
             showAddChatDialog()
         }
+
+        binding.additionChat.setOnClickListener {
+            //코드입력함수 짜기
+        }
     }
 
     private fun setupRecyclerView() {

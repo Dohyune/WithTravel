@@ -24,6 +24,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/plus_button"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="+"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+           />
+
         <EditText
             android:id="@+id/messageEditText"
             android:layout_width="0dp"

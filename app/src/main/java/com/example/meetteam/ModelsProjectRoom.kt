@@ -1,5 +1,17 @@
 package com.example.meetteam.network
 
+//로그인 요청 및 응답
+data class LoginRequest(
+    val email : String,
+    val password : String
+)
+data class LoginResponse(
+    val isSuccess: Boolean,
+    val code: String,
+    val message: String,
+    val result: String
+)
+
 // 방 생성 요청 및 응답
 data class CreateRoomRequest(
     val chatroomName: String,
@@ -71,3 +83,4 @@ data class DeleteRoomResponse(
     val message: String,
     val result: Any?
 )
+

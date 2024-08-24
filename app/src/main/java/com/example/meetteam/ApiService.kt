@@ -21,4 +21,8 @@ interface ApiService {
 
     @POST("room/exit")
     fun deleteRoom(@Body request: DeleteRoomRequest): Call<DeleteRoomResponse>
+
+    @POST("login")
+    fun login(@Body request: LoginRequest): Call<LoginResponse>
+
 }
