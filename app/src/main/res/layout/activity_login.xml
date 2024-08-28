@@ -2,100 +2,111 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="@color/blue">
 
-    <!-- Back button and Login title -->
+    <!-- Back Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:drawableStart="@drawable/ic_arrow_back"
+        android:drawableStart="@drawable/login_ic_back"
         android:drawablePadding="8dp"
         android:padding="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/line"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <!-- Meetteam Icon 1 -->
+    <ImageView
+        android:id="@+id/login_icon_mt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_ic_mt1"
+        android:layout_marginStart="26dp"
+        app:layout_constraintTop_toBottomOf="@id/back_button"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Meetteam Icon 2 -->
+    <ImageView
+        android:id="@+id/login_icon_mt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/login_ic_mt2"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="26dp"
+        app:layout_constraintTop_toBottomOf="@id/login_icon_mt"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Background Hand Image -->
+    <ImageView
+        android:id="@+id/login_icon_hand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/login_ic_hand"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- White Rounded Background for Login Section -->
+    <View
+        android:id="@+id/white_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_white_background"
+        app:layout_constraintTop_toTopOf="@id/login_title"
+        android:layout_marginTop="-50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <ImageView
         android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-
+        android:background="@drawable/login_ic_title"
+        android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/line"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
-    <!-- Divider line -->
-    <View
-        android:id="@+id/line"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="#D3D3D3"
-        android:layout_marginTop="2dp"
-        app:layout_constraintTop_toBottomOf="@id/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <!-- Meetteam Logo -->
-    <ImageView
-        android:id="@+id/login_icon1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/login_icon1"
-        android:layout_marginTop="120dp"
-        app:layout_constraintTop_toBottomOf="@id/line"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
-
-    <!-- Slogan -->
-    <ImageView
-        android:id="@+id/login_icon2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/login_icon2"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/login_icon1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
-
-
+    <!-- Username EditText -->
     <EditText
         android:id="@+id/username"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="아이디"
         android:inputType="text"
         android:padding="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_icon2"/>
+        app:layout_constraintTop_toBottomOf="@id/login_title"
+        app:layout_constraintBottom_toTopOf="@id/password"
+        app:layout_constraintWidth_percent="0.9" />
 
+    <!-- Password EditText -->
     <EditText
         android:id="@+id/password"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username"/>
+        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintBottom_toTopOf="@id/wrong_alert"
+        app:layout_constraintWidth_percent="0.9" />
 
     <TextView
         android:id="@+id/wrong_alert"
@@ -107,69 +118,91 @@
         android:textColorLink="#FF0000"
         android:textSize="11sp"
         android:visibility="gone"
+        android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/password"/>
+    <!-- Login Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="로그인"
+        android:background="@drawable/rounded_button_background"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wrong_alert"
+        app:layout_constraintWidth_percent="0.9" />
 
+    <!-- Find ID Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/find_id"
-        android:layout_width="65dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:text="아이디 찾기"
         android:textColor="@color/black"
-        android:textSize="11sp"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/find_pw"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        android:layout_marginStart="26dp"/>
 
-    <TextView
-        android:id="@+id/divider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="|"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/find_pw"
-        app:layout_constraintTop_toBottomOf="@id/password" />
-
+    <!-- Find Password Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/find_pw"
-        android:layout_width="65dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:text="비밀번호 찾기"
         android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password" />
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintStart_toEndOf="@id/find_id"
+        app:layout_constraintEnd_toStartOf="@id/signup_button"
+        />
+
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_button"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@drawable/rounded_button_background"
-        android:backgroundTint="@color/blue"
-        android:padding="12dp"
-        android:text="로그인 하기"
-        android:textColor="@color/white"
-        android:layout_marginTop="16dp"
+        android:id="@+id/signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/find_pw" />
+        app:layout_constraintStart_toEndOf="@id/find_pw"
+        app:layout_constraintTop_toBottomOf="@id/login_button"
+        android:layout_marginEnd="26dp"/>
 
-    <!-- 카카오톡 로그인 버튼 -->
+    <View
+        android:id="@+id/horizontal_divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#D3D3D3"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/find_pw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- KakaoTalk Login Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/kakao_login_button"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/kakao_login_medium_wide"
-        android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@id/login_button"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_ic_kakao"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_divider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 로그인 버튼 -->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
