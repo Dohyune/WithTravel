@@ -113,6 +113,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful && response.body()?.isSuccess == true) {
                     Log.e(TAG, "사용자 정보 요청 성공")
+
                     //Toast.makeText(requireContext(), "로그인 성공!", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e(TAG, "사용자 정보 요청 실패1")
