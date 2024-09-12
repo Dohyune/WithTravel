@@ -69,6 +69,7 @@
         android:textColor="#515151"
         />
     <Button
+        android:id="@+id/location_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="위치 설정"
