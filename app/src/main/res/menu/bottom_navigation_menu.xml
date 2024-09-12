@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#FFFFFF">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/nav_home"
@@ -18,5 +17,6 @@
     <item
         android:id="@+id/nav_profile"
         android:title="마이페이지"
-        android:icon="@drawable/mypage" />
+        android:icon="@drawable/mypage"
+        />
 </menu>

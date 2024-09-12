@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText: EditText = binding.password
         val loginButton: Button = binding.loginButton
         val backButton: Button = binding.backButton
-        val kakaoLoginButton: Button = binding.kakaoLoginButton
+        val kakaoLoginButton: Button = binding.kakaoLoginButton2
 
         kakaoAuthViewModel.setActivityContext(this)
         // 카카오 로그인 상태 체크 및 처리
