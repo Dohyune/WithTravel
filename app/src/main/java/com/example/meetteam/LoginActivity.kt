@@ -7,12 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
-import com.example.meetteam.KakaoAuthViewModel.Companion.TAG
 import com.example.meetteam.databinding.ActivityLoginBinding
 import com.example.meetteam.network.ApiService
 import com.example.meetteam.network.LoginRequest
@@ -28,6 +25,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     private val kakaoAuthViewModel: KakaoAuthViewModel by viewModels()
+
+    companion object {
+        private const val TAG = "LoginActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
