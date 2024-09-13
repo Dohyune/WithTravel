@@ -45,7 +45,7 @@ class IntroActivity : AppCompatActivity() {
 
         binding.kakaoLoginButton.setOnClickListener {
             Log.i("KakaoLogin","Kakao Login button pressed")
-            kakaoAuthViewModel.handleKakaoLogin()
+            kakaoAuthViewModel.handleKakaoLogin(this@IntroActivity)
         }
 
         binding.idLoginButton.setOnClickListener {

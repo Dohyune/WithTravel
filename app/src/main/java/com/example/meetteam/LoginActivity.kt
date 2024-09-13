@@ -41,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
         val backButton: Button = binding.backButton
         val kakaoLoginButton: Button = binding.kakaoLoginButton2
 
-        kakaoAuthViewModel.setActivityContext(this)
         // 카카오 로그인 상태 체크 및 처리
         lifecycleScope.launch {
             kakaoAuthViewModel.isLoggedIn.collect { isLoggedIn ->
@@ -86,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
 
         // 카카오 로그인 버튼 클릭 리스너
         kakaoLoginButton.setOnClickListener {
-            kakaoAuthViewModel.handleKakaoLogin()
+            kakaoAuthViewModel.handleKakaoLogin(this@LoginActivity)
         }
 
         // 뒤로가기 버튼 클릭 리스너

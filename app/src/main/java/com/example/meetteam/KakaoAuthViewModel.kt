@@ -23,16 +23,11 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private val context = application.applicationContext
-    private var activityContext: Activity? = null
 
     private val _isLoggedIn = MutableStateFlow(false)
     val isLoggedIn: StateFlow<Boolean> get() = _isLoggedIn
 
-    fun setActivityContext(activity: Activity) {
-        activityContext = activity
-    }
-
-    fun handleKakaoLogin() {
+    fun handleKakaoLogin(activity:Activity) {
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 Log.e(TAG, "Kakao Account login failed", error)
@@ -43,22 +38,18 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
         }
 
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
-            activityContext?.let { activity ->
-                UserApiClient.instance.loginWithKakaoTalk(activity) { token, error ->
-                    if (error != null) {
-                        Log.e(TAG, "Kakaotalk login failed", error)
-                        if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
-                            return@loginWithKakaoTalk
-                        }
-                        UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
-                    } else if (token != null) {
-                        Log.i(TAG, "Kakaotalk login success ${token.accessToken}")
+            UserApiClient.instance.loginWithKakaoTalk(activity) { token, error ->
+                if (error != null) {
+                    Log.e(TAG, "Kakaotalk login failed", error)
+                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        return@loginWithKakaoTalk
+                    }
+                    UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
+                } else if (token != null) {
+                    Log.i(TAG, "Kakaotalk login success ${token.accessToken}")
                         _isLoggedIn.value = true
                     }
                 }
-            } ?: run {
-                Log.e(TAG, "Activity context is null")
-            }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
         }
