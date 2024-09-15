@@ -6,39 +6,40 @@
     android:orientation="vertical"
     android:background="#FFFFFF">>
 
-    <TextView
-        android:id="@+id/chat_subject"
+    <ImageView
+        android:id="@+id/meetteam_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="채팅"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/meetteam_logo"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+
+
+    <ImageButton
         android:id="@+id/create_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="방 생성"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_button_background"
-        android:backgroundTint="@color/blue"
+        android:background="@drawable/chat_add"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toStartOf="@+id/addition_chat"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginRight="10dp"
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/addition_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="방 입장"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_button_background"
+        android:background="@drawable/chat_scan"
         android:backgroundTint="@color/blue"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

@@ -79,12 +79,12 @@
         android:background="@drawable/intro_login_button"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@id/forgot_password"
+        app:layout_constraintBottom_toTopOf="@id/forgot_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/forgot_password"
+        android:id="@+id/forgot_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="아이디를 잊으셨나요?"
@@ -93,8 +93,8 @@
         android:background="@android:color/transparent"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintEnd_toStartOf="@id/find_id_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -107,8 +107,8 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/signup_button"/>
+        app:layout_constraintEnd_toStartOf="@id/signup_button"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- 구분자 텍스트 ( | ) -->
     <TextView
@@ -131,7 +131,7 @@
         android:textSize="12sp"
         android:background="@android:color/transparent"
         android:layout_marginBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/forgot_id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"/>
