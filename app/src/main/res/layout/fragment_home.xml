@@ -5,59 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FFFFFF">>
-
-    <!-- Chat Subject -->
-    <TextView
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="홈"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/intro_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/intro_text"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintTop_toBottomOf="@id/home"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
+    android:background="#FFFFFF">
 
     <ImageView
-        android:id="@+id/character_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="#FF777777"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/character_description"
-        app:layout_constraintTop_toBottomOf="@id/intro_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
-
-    <TextView
-        android:id="@+id/user_greeting"
+        android:id="@+id/meetteam_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_greeting"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/character_image"
+        android:background="@drawable/meetteam_logo"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <Button
         android:id="@+id/logout_button"
@@ -65,9 +23,10 @@
         android:layout_height="wrap_content"
         android:text="@string/logout"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/user_greeting"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="100dp"
         app:layout_constraintHorizontal_bias="0.5"/>
 
 

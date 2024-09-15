@@ -25,24 +25,21 @@
             android:layout_width="0dp"
             android:layout_height="4dp"
             android:layout_weight="1"
-            android:background="@color/white"
-            android:layout_marginHorizontal="4dp" />
+            android:background="@drawable/rounded_indicator"             android:layout_marginHorizontal="4dp" />
 
         <View
             android:id="@+id/indicator_2"
             android:layout_width="0dp"
             android:layout_height="4dp"
             android:layout_weight="1"
-            android:background="@color/skyblue"
-            android:layout_marginHorizontal="4dp" />
+            android:background="@drawable/rounded_indicator"             android:layout_marginHorizontal="4dp" />
 
         <View
             android:id="@+id/indicator_3"
             android:layout_width="0dp"
             android:layout_height="4dp"
             android:layout_weight="1"
-            android:background="@color/skyblue"
-            android:layout_marginHorizontal="4dp" />
+            android:background="@drawable/rounded_indicator"             android:layout_marginHorizontal="4dp" />
 
     </LinearLayout>
 

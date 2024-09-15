@@ -1,8 +1,10 @@
 package com.example.meetteam
 
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -55,17 +57,22 @@ class IntroActivity : AppCompatActivity() {
     }
 
     private fun updateIndicators(position: Int) {
-        // 모든 인디케이터의 배경색을 회색으로 설정
-        binding.indicator1.setBackgroundColor(getColor(R.color.skyblue))
-        binding.indicator2.setBackgroundColor(getColor(R.color.skyblue))
-        binding.indicator3.setBackgroundColor(getColor(R.color.skyblue))
+        // 모든 인디케이터의 배경색을 기본 색상으로 설정
+        setIndicatorColor(binding.indicator1, R.color.introblue)
+        setIndicatorColor(binding.indicator2, R.color.introblue)
+        setIndicatorColor(binding.indicator3, R.color.introblue)
 
         // 현재 페이지에 해당하는 인디케이터만 하얀색으로 변경
         when (position) {
-            0 -> binding.indicator1.setBackgroundColor(getColor(R.color.white))
-            1 -> binding.indicator2.setBackgroundColor(getColor(R.color.white))
-            2 -> binding.indicator3.setBackgroundColor(getColor(R.color.white))
+            0 -> setIndicatorColor(binding.indicator1, R.color.white)
+            1 -> setIndicatorColor(binding.indicator2, R.color.white)
+            2 -> setIndicatorColor(binding.indicator3, R.color.white)
         }
+    }
+
+    private fun setIndicatorColor(view: View, colorResId: Int) {
+        val drawable = view.background as GradientDrawable
+        drawable.setColor(getColor(colorResId))
     }
 
     private fun navigateToMainActivity(){
