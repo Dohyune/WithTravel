@@ -15,7 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meetteam.databinding.FragmentChatBinding
+import com.example.meetteam.databinding.Fragment2ChattingBinding
 import com.example.meetteam.network.ApiService
 import com.example.meetteam.network.CreateRoomRequest
 import com.example.meetteam.network.CreateRoomResponse
@@ -30,7 +30,7 @@ import kotlin.random.Random
 
 class ChatFragment : Fragment() {
 
-    private lateinit var binding: FragmentChatBinding
+    private lateinit var binding: Fragment2ChattingBinding
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var chatViewModel: ChatViewModel
 
@@ -38,7 +38,7 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentChatBinding.inflate(inflater, container, false)
+        binding = Fragment2ChattingBinding.inflate(inflater, container, false)
         return binding.root
     }
 

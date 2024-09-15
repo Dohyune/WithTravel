@@ -13,9 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:drawableStart="@drawable/login_ic_back"
-        android:drawablePadding="8dp"
-        android:padding="0dp"
+        android:drawableStart="@drawable/login_back"
         android:layout_marginTop="26dp"
         android:layout_marginLeft="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +118,8 @@
         android:visibility="gone"
         android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password"/>
+        app:layout_constraintTop_toBottomOf="@id/password"
+        app:layout_constraintBottom_toTopOf="@id/login_button"/>
     <!-- Login Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_button"
@@ -134,6 +133,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/wrong_alert"
+        app:layout_constraintBottom_toTopOf="@id/find_pw"
         app:layout_constraintWidth_percent="0.9" />
 
     <!-- Find ID Button -->
@@ -148,6 +148,7 @@
         app:layout_constraintTop_toBottomOf="@id/login_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/find_pw"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_divider"
         android:layout_marginStart="26dp"/>
 
     <!-- Find Password Button -->
@@ -162,6 +163,7 @@
         app:layout_constraintTop_toBottomOf="@id/login_button"
         app:layout_constraintStart_toEndOf="@id/find_id"
         app:layout_constraintEnd_toStartOf="@id/signup_button"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_divider"
         />
 
 
@@ -176,6 +178,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/find_pw"
         app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_divider"
         android:layout_marginEnd="26dp"/>
 
     <View
@@ -186,17 +189,19 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        app:layout_constraintTop_toBottomOf="@id/find_pw"
+        app:layout_constraintVertical_bias="0.85"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- KakaoTalk Login Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/kakao_login_button2"
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/login_ic_kakao"
         app:layout_constraintTop_toBottomOf="@id/horizontal_divider"
         app:layout_constraintStart_toStartOf="parent"

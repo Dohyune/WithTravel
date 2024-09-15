@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    android:layout_height="match_parent">
 
     <!-- Fragment 컨테이너 -->
     <FrameLayout
@@ -15,8 +11,6 @@
         android:layout_above="@id/bottom_navigation"
         android:background="#FFFFFF"/>
 
-
-
     <!-- 바텀 네비게이션 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -25,8 +19,11 @@
         android:layout_alignParentBottom="true"
         android:background="#EFEFEF"
         app:menu="@menu/bottom_navigation_menu"
-        app:itemIconTint="@drawable/menu_click_color"
-        app:itemTextColor="@drawable/menu_click_color"
-        />
-
+        app:itemTextColor="@color/menu_text_color"
+        app:labelVisibilityMode="labeled"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemIconTint="@null"
+        app:itemBackground="@null"
+        app:itemIconSize="34dp"
+        app:itemActiveIndicatorStyle="@android:color/transparent"/>
 </RelativeLayout>

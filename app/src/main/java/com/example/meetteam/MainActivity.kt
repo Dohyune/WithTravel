@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
 
+        // Tint를 초기화하여 테마 색상이 적용되지 않도록 설정
+        bottomNavigationView.itemIconTintList = null
+
+        // 선택된 메뉴에 따라 프래그먼트 변경
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
@@ -44,11 +48,10 @@ class MainActivity : AppCompatActivity() {
             bottomNavigationView.selectedItemId = R.id.nav_home
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null)
             .commit()
     }
-
 }
