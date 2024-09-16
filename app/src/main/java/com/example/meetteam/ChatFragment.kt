@@ -1,6 +1,7 @@
 package com.example.meetteam
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -291,8 +292,14 @@ class ChatFragment : Fragment() {
     }
 
     private fun openChatRoom(chatData: ChatData) {
-        // 채팅방 열기 처리
+        val intent = Intent(requireContext(), ChattingActivity::class.java).apply {
+            putExtra("CHAT_TITLE", chatData.chat_title)
+            putExtra("CHAT_CODE", chatData.chat_code)
+            putExtra("PEOPLE_NUM", chatData.people_num)
+        }
+        startActivity(intent)
     }
+
 
     private fun showEmptyChatViews() {
         binding.icEmptyChat.visibility = View.VISIBLE
