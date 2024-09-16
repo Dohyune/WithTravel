@@ -5,11 +5,21 @@ data class LoginRequest(
     val email : String,
     val password : String
 )
+
+data class result(
+    val accessToken: token,
+    val refreshToken: token
+)
+
+data class token(
+    val token: String
+)
+
 data class LoginResponse(
+    val result: result,
     val isSuccess: Boolean,
     val code: String,
-    val message: String,
-    val result: String
+    val message: String
 )
 
 // 방 생성 요청 및 응답
