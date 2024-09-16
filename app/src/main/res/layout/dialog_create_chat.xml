@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="wrap_content">
 
+    <!-- 타이틀 -->
     <TextView
         android:id="@+id/dialogTitle"
         android:layout_width="wrap_content"
@@ -17,14 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:textColor="@android:color/black" />
+
     <!-- 이미지 placeholder -->
     <ImageView
         android:id="@+id/imagePlaceholder"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/rounded_button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chat_dialog_create_ic"
         app:layout_constraintTop_toBottomOf="@id/dialogTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,16 +36,39 @@
     <!-- 채팅방 이름 입력 -->
     <EditText
         android:id="@+id/editTextChatName"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="채팅방 이름을 입력해주세요"
         android:padding="12dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/imagePlaceholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.9"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintWidth_percent="0.9" />
+
+    <!-- 조장 희망 텍스트 -->
+    <TextView
+        android:id="@+id/leaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="조장 희망"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:textColor="#4B4B4B"
+        app:layout_constraintTop_toBottomOf="@id/editTextChatName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/leaderToggle"/>
+
+    <!-- 조장 희망 토글 -->
+    <Switch
+        android:id="@+id/leaderToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/editTextChatName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/leaderText"
+        android:layout_marginTop="16dp" />
 
     <!-- 인원 설정 텍스트 -->
     <TextView
@@ -52,63 +76,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="인원 설정"
-        android:layout_marginStart="30dp"
+        android:textSize="16sp"
+        android:textColor="#4B4B4B"
+        app:layout_constraintTop_toBottomOf="@id/leaderToggle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextChatName"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintEnd_toStartOf="@id/leaderToggle"
+        android:layout_marginTop="20dp" />
+
+    <!-- 인원 감소 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/decreaseButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/chat_dialog_minus_n"
+        app:layout_constraintTop_toBottomOf="@id/tv_ppl_num"
+        app:layout_constraintEnd_toStartOf="@id/peopleCount"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="14dp"/>
+
+    <!-- 인원 수 표시 -->
     <TextView
-        android:id="@+id/leader"
+        android:id="@+id/peopleCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="리더를 희망해요"
-        android:layout_marginStart="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_ppl_num"
-        android:textSize="11sp"
-        android:layout_marginTop="10dp"/>
-
-    <!-- 인원 설정 입력 -->
-    <EditText
-        android:id="@+id/editPeopleNum"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="인원 설정(2~7)"
-        android:background="@drawable/rounded_edittext_gray"
-        android:padding="12dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:text="2"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/tv_ppl_num"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/leader"
-        app:layout_constraintWidth_percent="0.7"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 리더 희망 스위치 -->
-    <Switch
-        android:id="@+id/leader_toggle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
-        android:thumbTint="@color/switch_thumb_color"
-        android:trackTint="@color/switch_track_color"
-        android:layout_marginTop="10dp"
+    <!-- 인원 증가 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/increaseButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/chat_dialog_plus"
+        app:layout_constraintTop_toBottomOf="@id/tv_ppl_num"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editPeopleNum"
-        app:layout_constraintTop_toBottomOf="@id/leader"/>
+        app:layout_constraintStart_toEndOf="@id/peopleCount"
+        android:layout_marginTop="14dp" />
+
+    <!-- 취소 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cancelButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="취소"
+        android:padding="24dp"
+        android:background="@drawable/button_border"
+        android:textColor="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/confirmButton"
+        app:layout_constraintTop_toBottomOf="@id/increaseButton"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_marginTop="24dp" />
+
     <!-- 확인 버튼 -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/confirmButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="확인"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/blue"
-        app:layout_constraintTop_toBottomOf="@id/editPeopleNum"
-        app:layout_constraintStart_toStartOf="parent"
+        android:padding="24dp"
+        android:background="@drawable/button_border"
+        android:textColor="@android:color/darker_gray"
+        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintStart_toEndOf="@id/cancelButton"
+        app:layout_constraintTop_toBottomOf="@id/increaseButton"
+        app:layout_constraintWidth_percent="0.5"
         android:layout_marginTop="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
