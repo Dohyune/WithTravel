@@ -54,6 +54,12 @@ class IntroActivity : AppCompatActivity() {
             val intent = Intent(this@IntroActivity, LoginActivity::class.java)
             startActivity(intent)
         }
+
+        // 테스트용
+        binding.forgotId.setOnClickListener {
+            val intent = Intent(this@IntroActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun updateIndicators(position: Int) {

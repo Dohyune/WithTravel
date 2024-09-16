@@ -52,10 +52,25 @@ class ChatFragment : Fragment() {
 
         chatViewModel.chatDataList.observe(viewLifecycleOwner) { chatList ->
             chatAdapter.submitList(chatList.toList())
+
+            // 채팅 데이터가 없으면 empty view 표시, 있으면 숨기기
+            if (chatList.isEmpty()) {
+                showEmptyChatViews()  // 빈 채팅방 뷰 표시
+            } else {
+                hideEmptyChatViews()  // 빈 채팅방 뷰 숨기기
+            }
         }
 
         binding.createChat.setOnClickListener {
             showAddChatDialog()
+        }
+
+        binding.newChatButton.setOnClickListener{
+            showAddChatDialog()
+        }
+        // 채팅방 만들기 테스트
+        binding.testCreateChat.setOnClickListener{
+            showLocalAddChatDialog()
         }
 
         binding.additionChat.setOnClickListener {
@@ -149,5 +164,79 @@ class ChatFragment : Fragment() {
             putExtra("PEOPLE_NUM", chatData.people_num)
         }
         startActivity(intent)
+    }
+
+    // 채팅방이 없을 때 Empty View를 보여주는 함수
+    private fun showEmptyChatViews() {
+        binding.icEmptyChat.visibility = View.VISIBLE
+        binding.emptyChatText.visibility = View.VISIBLE
+        binding.newChatButton.visibility = View.VISIBLE
+    }
+
+    // 채팅방이 있을 때 Empty View를 숨기는 함수
+    private fun hideEmptyChatViews() {
+        binding.icEmptyChat.visibility = View.GONE
+        binding.emptyChatText.visibility = View.GONE
+        binding.newChatButton.visibility = View.GONE
+    }
+
+
+    // for test
+    // 서버 통신 없이 로컬에서만 채팅방을 생성하는 다이얼로그
+    private fun showLocalAddChatDialog() {
+        val dialog = Dialog(requireContext())
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_create_chat, null)
+
+        dialog.setContentView(dialogView)
+
+        // 다이얼로그 크기 및 배경 설정
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(),
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog_background)
+
+        // 다이얼로그 타이틀을 중앙에 배치
+        val titleTextView = dialogView.findViewById<TextView>(R.id.dialogTitle)
+        titleTextView.gravity = Gravity.CENTER
+
+        val titleInput = dialogView.findViewById<EditText>(R.id.editTextChatName)
+        val peopleNumInput = dialogView.findViewById<EditText>(R.id.editPeopleNum)
+        val leaderToggle = dialogView.findViewById<Switch>(R.id.leader_toggle)
+        val confirmButton = dialogView.findViewById<Button>(R.id.confirmButton)
+
+        var wantLeader = false
+
+        leaderToggle.setOnCheckedChangeListener { _, isChecked ->
+            wantLeader = isChecked
+        }
+
+        confirmButton.setOnClickListener {
+            val chatroomName = titleInput.text.toString()
+            val totalMember = peopleNumInput.text.toString().toIntOrNull()
+
+            if (chatroomName.isNotEmpty() && totalMember != null && totalMember in 2..7) {
+                createLocalChatRoom(chatroomName, totalMember, wantLeader)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "인원수는 2~7명 사이여야 합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
+    }
+
+    // 로컬에서만 채팅방 생성
+    private fun createLocalChatRoom(chatroomName: String, totalMember: Int, wantLeader: Boolean) {
+        // 고유 채팅방 코드를 랜덤으로 생성
+        val chatCode = "ROOM" + Random.nextInt(10000, 99999).toString()
+
+        // 새로운 채팅방 데이터를 생성
+        val newChat = ChatData(chatroomName, chatCode, totalMember.toString(), getCurrentTime())
+
+        // ViewModel에 새로운 채팅방 추가
+        chatViewModel.addChat(newChat)
+
+        // 성공 메시지 표시
+        Toast.makeText(requireContext(), "채팅방이 로컬에서 생성되었습니다!", Toast.LENGTH_SHORT).show()
     }
 }

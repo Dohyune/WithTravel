@@ -11,5 +11,9 @@
     <color name="darkgray">#363636</color>
     <color name="lightgray">#DCDCDC</color>
     <color name="nearwhite">#EFEFEF</color>
+    <color name="chat_code_gray">#71727A</color>
+    <color name="chat_time_gray">#7A7A7A</color>
+    <color name="chat_alert_num_blue">#006FFD</color>
+    <color name="chat_new_blue">#005FFF</color>
 
 </resources>
