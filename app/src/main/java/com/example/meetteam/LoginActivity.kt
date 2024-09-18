@@ -88,6 +88,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // 회원가입 버튼
+        binding.signupButton.setOnClickListener{
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
         // 카카오 로그인 버튼 클릭 리스너
         kakaoLoginButton.setOnClickListener {
             kakaoAuthViewModel.handleKakaoLogin(this@LoginActivity)

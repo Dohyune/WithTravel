@@ -55,6 +55,12 @@ class IntroActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.signupButton.setOnClickListener{
+            val intent = Intent(this@IntroActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+
         // 테스트용
         binding.forgotId.setOnClickListener {
             val intent = Intent(this@IntroActivity, MainActivity::class.java)
