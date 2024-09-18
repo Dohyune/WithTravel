@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -105,10 +106,10 @@ class ChatFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s?.isNotEmpty() == true) {
                     dialogBinding.confirmButton.isEnabled = true
-                    dialogBinding.confirmButton.setTextColor(resources.getColor(R.color.blue)) // 파란색으로 변경
+                    dialogBinding.confirmButton.setTextColor(ContextCompat.getColor(requireContext(),R.color.blue)) // 파란색으로 변경
                 } else {
                     dialogBinding.confirmButton.isEnabled = false
-                    dialogBinding.confirmButton.setTextColor(resources.getColor(android.R.color.darker_gray)) // 회색으로 변경
+                    dialogBinding.confirmButton.setTextColor(ContextCompat.getColor(requireContext(),R.color.darkgray)) // 회색으로 변경
                 }
             }
 
@@ -215,10 +216,10 @@ class ChatFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s?.isNotEmpty() == true) {
                     dialogBinding.confirmButton.isEnabled = true
-                    dialogBinding.confirmButton.setTextColor(resources.getColor(R.color.blue)) // 파란색으로 변경
+                    dialogBinding.confirmButton.setTextColor(ContextCompat.getColor(requireContext(),R.color.blue)) // 파란색으로 변경
                 } else {
                     dialogBinding.confirmButton.isEnabled = false
-                    dialogBinding.confirmButton.setTextColor(resources.getColor(android.R.color.darker_gray)) // 회색으로 변경
+                    dialogBinding.confirmButton.setTextColor(ContextCompat.getColor(requireContext(),R.color.darkgray)) // 회색으로 변경
                 }
             }
 

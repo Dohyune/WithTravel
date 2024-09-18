@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    replaceFragment(ProfileFragment())
+                    replaceFragment(MyPageFragment())
                     true
                 }
                 else -> false

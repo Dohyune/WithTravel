@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CalendarView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/calendarView"
+    android:background="@drawable/mypage_schedule_rounded_background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:dateTextAppearance="@style/CalendarWeekdayTextAppearance"
+    android:weekDayTextAppearance="@style/CalendarWeekdayTextAppearance"
+    android:selectedDateVerticalBar="@color/selectedCircleColor"
+    />

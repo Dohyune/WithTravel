@@ -33,7 +33,7 @@ class ChattingActivity : AppCompatActivity() {
         setupRecyclerView()
 
         binding.backButton.setOnClickListener {
-            onBackPressed() // 이전 액티비티로 돌아가기
+            onBackPressed()
         }
 
         binding.optionsButton.setOnClickListener {

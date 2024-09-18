@@ -15,5 +15,10 @@
     <color name="chat_time_gray">#7A7A7A</color>
     <color name="chat_alert_num_blue">#006FFD</color>
     <color name="chat_new_blue">#005FFF</color>
+    <!--달력-->
+    <color name="weekdayColor">#737373</color> <!-- 평일 색상 -->
+    <color name="sundayColor">#FF2F3B</color> <!-- 일요일 색상 -->
+    <color name="saturdayColor">#16A5E2</color> <!-- 토요일 색상 -->
+    <color name="selectedCircleColor">#ADC7FF</color> <!-- 선택된 날짜 동그라미 색상 -->
 
 </resources>

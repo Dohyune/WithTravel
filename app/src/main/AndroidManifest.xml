@@ -51,7 +51,6 @@
         <activity android:name=".SignUpActivity"/>
         <activity android:name=".UserInfoActivity"/>
         <activity android:name=".ChattingActivity"/>
-        <activity android:name=".ChatDetailActivity"/>
         <activity android:name=".SettingActivity" />
         <activity android:name=".LocationSettingActivity" />
     </application>

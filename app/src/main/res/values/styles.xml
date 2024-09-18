@@ -7,4 +7,29 @@
         <item name="android:windowMinWidthMinor">90%</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <!-- 평일 텍스트 스타일 -->
+    <style name="CalendarWeekdayTextAppearance">
+        <item name="android:textColor">@color/weekdayColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- 일요일 텍스트 스타일 -->
+    <style name="CalendarSundayTextAppearance">
+        <item name="android:textColor">@color/sundayColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- 토요일 텍스트 스타일 -->
+    <style name="CalendarSaturdayTextAppearance">
+        <item name="android:textColor">@color/saturdayColor</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- 선택된 날짜 텍스트 스타일 -->
+    <style name="CalendarSelectedDateTextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@color/selectedCircleColor</item>
+    </style>
+
 </resources>

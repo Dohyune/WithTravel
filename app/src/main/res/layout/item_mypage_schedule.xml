@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mypage_schedule_rounded_background"
+    android:padding="8dp">
+
+    <!-- 왼쪽 아이콘 (초록색 원) -->
+    <ImageView
+        android:id="@+id/iconStatus"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:src="@drawable/mypage_green_dot"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        android:layout_marginEnd="8dp"/>
+
+    <!-- 방 제목 -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="신화와 예술 팀플"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/iconStatus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintEnd_toStartOf="@id/session"/>
+
+    <!-- 내용 (차수) -->
+    <TextView
+        android:id="@+id/session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3차 토의"
+        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"/>
+
+    <!-- 시간 -->
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PM 04:00"
+        android:textSize="11sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="@id/iconStatus"
+        app:layout_constraintBottom_toTopOf="@id/location"/>
+
+    <!-- 장소 -->
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="서울 광진구 어린이대공원역"
+        android:textSize="11sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/time"
+        app:layout_constraintStart_toStartOf="@id/iconStatus"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
