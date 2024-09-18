@@ -1,29 +1,29 @@
 package com.example.meetteam
 
-import android.content.pm.PackageManager
-import android.graphics.Point
+import android.annotation.SuppressLint
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
-import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.kakao.vectormap.camera.CameraUpdateFactory
-import com.kakao.vectormap.label.LabelOptions
-import com.kakao.vectormap.label.LabelStyle
+import com.kakao.vectormap.label.LabelManager
 
 
 
 
 class LocationSettingActivity:AppCompatActivity() {
-    /*
+
+    //var my_latitude:String
+    //var my_longtitude:String
+
     @SuppressLint("MissingPermission")
     private fun getLocation(textView: TextView) {
         val fusedLocationProviderClient =
@@ -34,11 +34,14 @@ class LocationSettingActivity:AppCompatActivity() {
                 success?.let { location ->
                     textView.text =
                         "${location.latitude}, ${location.longitude}"
+                    //my_latitude = "${location.latitude}"
+                    //my_longtitude = "${location.longitude}"
                 }
             }
             .addOnFailureListener { fail ->
                 textView.text = fail.localizedMessage
             }
+
     }
 
 
@@ -51,14 +54,17 @@ class LocationSettingActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_location_setting)
 
-        //val locationText: TextView = findViewById(R.id.locationText)
+        val locationText: TextView = findViewById(R.id.locationText)
         val locationButton: Button = findViewById(R.id.locationButton)
-        /*
+
         locationButton.setOnClickListener {
             getLocation(locationText)
-        }*/
+        }
     }
-*/
+
+/*
+    var pos: LatLng? = LatLng.from(37.394265, 127.108332)
+
     private lateinit var mapView: MapView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +76,10 @@ class LocationSettingActivity:AppCompatActivity() {
         val locationButton: Button = findViewById(R.id.locationButton)
         val position = LatLng.from(37.394660, 127.111182)
 
-
+        locationButton.setOnClickListener {
+           // LatLng.getLatitude()
+            CameraUpdateFactory.newCenterPosition(LatLng.from(67.402005, 127.108621));
+        }
 
 
         // MapView 시작 및 콜백 설정
@@ -101,7 +110,7 @@ class LocationSettingActivity:AppCompatActivity() {
         super.onPause()
         mapView.pause() // MapView의 pause 호출
     }
-    /*
+
         override fun onDestroy() {
             super.onDestroy()
             mapView.destroy() // MapView의 destroy 호출

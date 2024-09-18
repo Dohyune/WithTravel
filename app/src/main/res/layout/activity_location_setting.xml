@@ -62,6 +62,17 @@
         app:layout_constraintWidth_percent="0.85"
         android:layout_marginTop="24dp" />
 
+    <EditText
+        android:id="@+id/locationText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="지번, 도로명, 건물명으로 검색"
+        android:padding="16dp"
+        android:background="@drawable/rounded_edittext_gray"
+        android:textColor="@color/black"
+
+        android:layout_marginTop="24dp" />
+
     <!-- Current Location Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/locationButton"

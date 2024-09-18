@@ -15,6 +15,8 @@ import com.example.meetteam.databinding.ActivityLoginBinding
 import com.example.meetteam.network.ApiService
 import com.example.meetteam.network.LoginRequest
 import com.example.meetteam.network.LoginResponse
+import com.example.meetteam.network.MemberSignupRequestDto
+import com.example.meetteam.network.MemberSignupResponseDto
 import com.example.meetteam.network.RetrofitClient
 import com.example.meetteam.network.result
 import kotlinx.coroutines.launch
@@ -58,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
             //로그인 서버 통신
 
             loginFun(username, password)
+            //MemberSignupRequestDtoFun(username,password,"01011111111","LOCAL")
 
             if (username == "test@test.com" && password == "123") {
                 val sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
@@ -122,6 +125,44 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.e(TAG, "사용자 정보 요청 실패2")
+                Log.e(TAG, "password")
+                // 네트워크 오류 등 처리
+            }
+        })
+    }
+
+    private fun MemberSignupRequestDtoFun(username: String, password: String, phoneNumber:String,loginType:String) {
+        val apiService = RetrofitClient.instance.create(ApiService::class.java)
+
+        // Create the login request with the provided username and password
+        val memberSignupRequest = MemberSignupRequestDto(
+            email = username,
+            password = password,
+            phoneNumber = phoneNumber,
+            loginType = loginType
+        )
+        Log.d(TAG, "로그인 요청 시작: username=$username, password=$password")
+        // Make the login API call
+        apiService.signup(memberSignupRequest).enqueue(object : Callback<MemberSignupResponseDto> {
+            override fun onResponse(call: Call<MemberSignupResponseDto>, response: Response<MemberSignupResponseDto>) {
+                Log.d(TAG, "Response Code: ${response.code()}")
+                Log.d(TAG, "Response Body: ${response.body()}")
+
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (response.body()?.isSuccess == true) {  // boolean 비교로 변경
+                        Log.d(TAG, "사용자 정보 요청 성공")
+                    } else {
+                        Log.e(TAG, "사용자 정보 요청 실패: isSuccess is false")
+                        Log.e(TAG, "Error message: ${response.body()?.isSuccess}")  // 에러 메시지가 있다면 출력
+                    }
+                } else {
+                    Log.e(TAG, "사용자 정보 요청 실패: ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<MemberSignupResponseDto>, t: Throwable) {
                 Log.e(TAG, "사용자 정보 요청 실패2")
                 Log.e(TAG, "password")
                 // 네트워크 오류 등 처리

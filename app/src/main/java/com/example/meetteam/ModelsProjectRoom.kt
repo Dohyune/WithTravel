@@ -21,6 +21,20 @@ data class LoginResponse(
     val code: String,
     val message: String
 )
+//회원가입
+data class MemberSignupRequestDto(
+    val email : String,
+    val password : String,
+    val phoneNumber : String,
+    val loginType:String
+)
+
+data class MemberSignupResponseDto(
+    val isSuccess : Boolean,
+    val code : String,
+    val message : String,
+    val result: String
+)
 
 // 방 생성 요청 및 응답
 data class CreateRoomRequest(
@@ -94,3 +108,4 @@ data class DeleteRoomResponse(
     val result: Any?
 )
 
+//
