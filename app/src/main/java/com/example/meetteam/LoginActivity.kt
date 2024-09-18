@@ -118,8 +118,12 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful && response.body()?.isSuccess == true) {
                     Log.e(TAG, "사용자 정보 요청 성공")
+                    Log.d(TAG, "Response Code: ${response.code()}")
+                    Log.d(TAG, "Response Body: ${response.body()}")
 
                 } else {
+                    Log.d(TAG, "Response Code: ${response.code()}")
+                    Log.d(TAG, "Response Body: ${response.body()}")
                     Log.e(TAG, "사용자 정보 요청 실패1")
                 }
             }
@@ -131,6 +135,8 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
+    //api연결함수 형식
 
     private fun MemberSignupRequestDtoFun(username: String, password: String, phoneNumber:String,loginType:String) {
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
