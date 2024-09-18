@@ -18,7 +18,10 @@ import com.example.meetteam.databinding.Fragment2ChattingBinding
 import com.example.meetteam.network.ApiService
 import com.example.meetteam.network.CreateRoomRequest
 import com.example.meetteam.network.CreateRoomResponse
+import com.example.meetteam.network.LoginResponse
 import com.example.meetteam.network.RetrofitClient
+import com.example.meetteam.network.result
+import com.example.meetteam.network.token
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -125,7 +128,7 @@ class ChatFragment : Fragment() {
         dialogBinding.confirmButton.setOnClickListener {
             val chatroomName = dialogBinding.editTextChatName.text.toString()
             val totalMember = dialogBinding.peopleCount.text.toString().toInt()
-            createChatRoom(chatroomName, totalMember, wantLeader)
+            //createChatRoom(chatroomName, totalMember, wantLeader)
             dialog.dismiss()
         }
 
@@ -169,12 +172,12 @@ class ChatFragment : Fragment() {
         dialog.show()
     }
 
-
+/*
     private fun createChatRoom(chatroomName: String, totalMember: Int, wantLeader: Boolean) {
         val apiService = RetrofitClient.instance.create(ApiService::class.java)
         val request = CreateRoomRequest(chatroomName, totalMember, wantLeader)
 
-        apiService.createRoom(request).enqueue(object : Callback<CreateRoomResponse> {
+        apiService.createRoom( request).enqueue(object : Callback<CreateRoomResponse> {
             override fun onResponse(call: Call<CreateRoomResponse>, response: Response<CreateRoomResponse>) {
                 if (response.isSuccessful && response.body()?.isSuccess == true) {
                     val newChat = ChatData(chatroomName, response.body()?.result ?: "", totalMember.toString(), getCurrentTime())
@@ -190,7 +193,7 @@ class ChatFragment : Fragment() {
             }
         })
     }
-
+*/
     private fun showLocalAddChatDialog() {
         val dialog = Dialog(requireContext())
         val dialogBinding = DialogCreateChatBinding.inflate(LayoutInflater.from(context))

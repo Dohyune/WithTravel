@@ -10,11 +10,13 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.meetteam.KakaoAuthViewModel.Companion
 import com.example.meetteam.databinding.ActivityLoginBinding
 import com.example.meetteam.network.ApiService
 import com.example.meetteam.network.LoginRequest
 import com.example.meetteam.network.LoginResponse
 import com.example.meetteam.network.RetrofitClient
+import com.example.meetteam.network.result
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -114,17 +116,15 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body()?.isSuccess == true) {
                     Log.e(TAG, "사용자 정보 요청 성공")
 
-                    //Toast.makeText(requireContext(), "로그인 성공!", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e(TAG, "사용자 정보 요청 실패1")
-                    //Toast.makeText(requireContext(), "로그인 실패: ${response.body()?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Log.e(TAG, "사용자 정보 요청 실패2")
                 Log.e(TAG, "password")
-                //Toast.makeText(requireContext(), "로그인 중 오류 발생: ${t.message}", Toast.LENGTH_SHORT).show()
+                // 네트워크 오류 등 처리
             }
         })
     }

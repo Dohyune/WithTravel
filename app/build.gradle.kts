@@ -74,9 +74,9 @@ dependencies {
     implementation ("com.kakao.sdk:v2-friend:2.20.6") // 피커 API 모듈
     implementation ("com.kakao.sdk:v2-navi:2.20.6") // 카카오내비 API 모듈
     implementation ("com.kakao.sdk:v2-cert:2.20.6") // 카카오톡 인증 서비스 API 모듈
+    implementation ("com.kakao.maps.open:android:2.11.9") //카카오맵
 
     //구글지도
     implementation ("com.google.android.gms:play-services-location:21.3.0")
-
 
 }
