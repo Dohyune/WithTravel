@@ -7,6 +7,9 @@ data class LoginRequest(
 )
 
 data class result(
+    val tokenResponse:tokenResponse
+)
+data class tokenResponse(
     val accessToken: token,
     val refreshToken: token
 )
@@ -16,10 +19,10 @@ data class token(
 )
 
 data class LoginResponse(
-    val result: result,
     val isSuccess: Boolean,
     val code: String,
-    val message: String
+    val message: String,
+    val result: result
 )
 //회원가입
 data class MemberSignupRequestDto(
