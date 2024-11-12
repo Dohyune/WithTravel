@@ -23,5 +23,5 @@ dependencyResolutionManagement {
 }
 
 
-rootProject.name = "Meetteam"
+rootProject.name = "WithTravel"
 include(":app")

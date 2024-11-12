@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Meetteam</string>
+    <string name="app_name">WithTravel</string>
     <string name="home">홈</string>
     <string name="chat">채팅</string>
     <string name="shop">상점</string>

@@ -15,7 +15,7 @@ if (localPropertiesFile.exists()) {
 val kakaoNativeAppKey = properties.getProperty("kakao_native_app_key", "")
 val kakaoOauthHost = properties.getProperty("kakao_oauth_host","")
 android {
-    namespace = "com.example.meetteam"
+    namespace = "com.example.withtravel"
     compileSdk = 34
 
     buildFeatures{
@@ -23,7 +23,7 @@ android {
         buildConfig=true
     }
     defaultConfig {
-        applicationId = "com.example.meetteam"
+        applicationId = "com.example.withtravel"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
